@@ -22,8 +22,7 @@ class LevelSystemScore {
         $scoreTagLevel = new ScoreTag("{levelsystem.level}", (string)$data["level"]);
         $scoreTagExp = new ScoreTag("{levelsystem.exp}", (string)$data["exp"]);
 
-        $scoreboard = $event->getScoreboard();
-        $scoreboard->addScoreTag($scoreTagLevel);
-        $scoreboard->addScoreTag($scoreTagExp);
+        $this->plugin->getServer()->getPluginManager()->getPlugin("ScoreHud")
+            ->updateScoreTags($player, [$scoreTagLevel, $scoreTagExp]);
     }
 }
