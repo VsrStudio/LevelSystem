@@ -3,24 +3,25 @@
 namespace VsrStudio\LevelSystem;
 
 use Ifera\ScoreHud\scoreboard\ScoreTag;
-use Ifera\ScoreHud\scoreboard\ScoreHudProvider;
+use Ifera\ScoreHud\event\PlayerTagUpdateEvent;
 use pocketmine\player\Player;
 
-class LevelSystemScore extends ScoreHudProvider {
+class LevelSystemScore {
 
-    private Main $plugin;
+    private $plugin;
 
     public function __construct(Main $plugin) {
         $this->plugin = $plugin;
     }
 
-    public function getScore(Player $player): array {
+    // Memperbarui ScoreTag pada event
+    public function onPlayerTagUpdate(PlayerTagUpdateEvent $event): void {
+        $player = $event->getPlayer();
         $name = $player->getName();
         $data = $this->plugin->getPlayerData($name);
 
-        return [
-            new ScoreTag("{levelsystem.level}", (string)$data["level"]),
-            new ScoreTag("{levelsystem.exp}", (string)$data["exp"])
-        ];
+        // Menambahkan tag level dan exp
+        $event->addTag(new ScoreTag("{levelsystem.level}", (string)$data["level"]));
+        $event->addTag(new ScoreTag("{levelsystem.exp}", (string)$data["exp"]));
     }
 }
