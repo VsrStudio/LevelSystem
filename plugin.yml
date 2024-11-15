@@ -1,0 +1,6 @@
+name: LevelSystem
+version: 1.0.0
+api: [5.0.0]
+author: vsr studio
+main: VsrStudio\LevelSystem\Main
+depend: [ScoreHud]
