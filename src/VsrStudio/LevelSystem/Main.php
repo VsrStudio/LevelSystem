@@ -15,7 +15,7 @@ class Main extends PluginBase {
     public function onEnable(): void {
         $this->saveDefaultConfig();
         $this->loadPlayerData();
-        $this->getServer()->getPluginManager()->registerEvents(new LevelSystemScore($this), $this);
+        $this->registerScoreHud();
         $this->getLogger()->info("LevelSystem plugin enabled.");
     }
 
@@ -49,6 +49,7 @@ class Main extends PluginBase {
         $plugin = $this->getServer()->getPluginManager()->getPlugin("ScoreHud");
 
         if ($plugin !== null && $plugin->isEnabled()) {
+            $this->getServer()->getPluginManager()->registerEvents(new LevelSystemScore($this), $this);
             $this->getLogger()->info("ScoreHud support enabled for LevelSystem.");
         } else {
             $this->getLogger()->warning("ScoreHud plugin not found or not enabled.");
@@ -69,7 +70,10 @@ class LevelSystemScore {
         $name = $player->getName();
         $data = $this->plugin->getPlayerData($name);
 
-        $event->addTag(new ScoreTag("{levelsystem.level}", (string)$data["level"]));
-        $event->addTag(new ScoreTag("{levelsystem.exp}", (string)$data["exp"]));
+        $scoreTagLevel = new ScoreTag("{levelsystem.level}", (string)$data["level"]);
+        $scoreTagExp = new ScoreTag("{levelsystem.exp}", (string)$data["exp"]);
+
+        $event->getScoreboard()->addScoreTag($scoreTagLevel);
+        $event->getScoreboard()->addScoreTag($scoreTagExp);
     }
 }
