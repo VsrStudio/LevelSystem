@@ -1,4 +1,4 @@
-# LevelSystem Plugin for PocketMine-MP
+# LevelSystem
 
 A simple and customizable LevelSystem plugin for PocketMine-MP that allows you to manage player levels and experience. It integrates with the **ScoreHud** plugin to display level and experience data in the scoreboard.
 
@@ -7,12 +7,6 @@ A simple and customizable LevelSystem plugin for PocketMine-MP that allows you t
 - Customizable player levels and experience
 - Integration with the **ScoreHud** plugin for displaying player level and experience
 - Player data stored in `playerData.yml`
-
-## Installation
-
-1. Download the **LevelSystem** plugin.
-2. Place the plugin folder inside your `plugins/` directory of your PocketMine-MP server.
-3. Ensure that the **ScoreHud** plugin is also installed and enabled on your server.
 
 ## Configuration
 
