@@ -1,0 +1,51 @@
+database:
+  # The database type. "sqlite" and "mysql" are supported.
+  type: sqlite
+
+  # Edit these settings only if you choose "sqlite".
+  sqlite:
+    # The file name of the database in the plugin data folder.
+    # You can also put an absolute path here.
+    file: LevelSystemDB.sqlite
+  # Edit these settings only if you choose "mysql".
+  mysql:
+    host: 127.0.0.1
+    # Avoid using the "root" user for security reasons.
+    username: root
+    password: ""
+    schema: your_schema
+  # The maximum number of simultaneous SQL queries
+  # Recommended: 1 for sqlite, 2 for MySQL. You may want to further increase this value if your MySQL connection is very slow.
+  worker-limit: 1
+
+# Setting LevelSystem Plugin here
+level: # Don't change or remove this key!
+  announcement_when_up_level: # For send a message to all players if a player levels up
+    enable: true
+    message: "§e{player} §ahas leveled up to §e{level}" # Use {player} to get player name, use {level} to get player next level.
+  add_exp:
+    by_bonus: # Players can get extra exp if they are lucky.
+      min: 5
+      max: 15
+    by_break_block: # Add exp if player break block
+      enable: true
+      min: 1
+      max: 5
+    by_place_block: # Add exp if player place block
+      enable: true
+      min: 1
+      max: 5
+    by_craft_item: # Add exp if player craft item
+      enable: true
+      min: 1
+      max: 5
+    by_chat: # Add exp if player send a chat
+      enable: true
+      min: 1
+      max: 5
+    by_kill_player: # Add exp if player kill another player
+      enable: true
+      min: 3
+      max: 10
+  reward_command: # Command execute by Console, use {player} to get player name.
+    - "give '{player}' diamond 10"
